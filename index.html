@@ -2,14 +2,325 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mon Site Roblox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21xMeliodasx12 | Développeur Roblox</title>
+    
+    <!-- Importation des icônes et des polices d'écriture -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
-        body { background-color: #222; color: white; font-family: Arial, sans-serif; text-align: center; padding-top: 50px; }
-        h1 { color: #00ff00; }
+        /* --- CONFIGURATION DES COULEURS (Noir & Rouge Foncé) --- */
+        :root {
+            --bg-color: #0a0a0a;       /* Noir profond */
+            --card-bg: #161616;        /* Gris très sombre pour les cases */
+            --primary-red: #8b0000;    /* Rouge Foncé demandé */
+            --bright-red: #ff0000;     /* Rouge vif pour les effets */
+            --text-color: #e0e0e0;     /* Blanc cassé */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border_box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* --- HERO SECTION (Le haut du site) --- */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-red);
+            box-shadow: 0 0 20px var(--primary-red);
+            margin-bottom: 20px;
+            /* Image par défaut Roblox (Avatar), tu pourras la changer */
+            background-image: url('https://tr.rbxcdn.com/30DAY-AvatarHeadshot-82A19F5D3B8A42024217350985300968-Png/150/150/AvatarHeadshot/Png/noFilter'); 
+            background-size: cover;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0px var(--primary-red);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .description {
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            background: rgba(0,0,0,0.5);
+            padding: 15px;
+            border-left: 3px solid var(--primary-red);
+        }
+
+        /* BOUTONS RESEAUX SOCIAUX */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-social {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: var(--card-bg);
+            border: 1px solid var(--primary-red);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+        .btn-social:hover {
+            background: var(--primary-red);
+            box-shadow: 0 0 15px var(--primary-red);
+            transform: translateY(-3px);
+        }
+
+        /* --- SECTION JEUX (Portfolio) --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 50px 0 30px 0;
+            color: var(--primary-red);
+            text-decoration: underline;
+        }
+
+        .games-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: scale(1.03);
+            border-color: var(--primary-red);
+        }
+
+        /* Images placeholders pour tes jeux - Tu devras mettre les vrais liens d'images si tu veux */
+        .game-img {
+            width: 100%;
+            height: 180px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 3rem;
+        }
+        
+        /* Classes spécifiques pour simuler des images */
+        .img-galaxy { background: linear-gradient(45deg, #2b1055, #7597de); }
+        .img-tycoon { background: linear-gradient(45deg, #000000, #434343); }
+        .img-group { background: linear-gradient(45deg, #8b0000, #000000); }
+
+        .game-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .btn-play {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: var(--primary-red);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .btn-play:hover {
+            background: white;
+            color: var(--primary-red);
+        }
+
+        /* --- SECTION CONTACT --- */
+        .contact-section {
+            background-color: var(--card-bg);
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 50px;
+        }
+
+        .contact-box {
+            background: black;
+            display: inline-block;
+            padding: 20px;
+            border: 1px solid var(--primary-red);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .discord-tag {
+            font-size: 1.5rem;
+            font-family: monospace;
+            color: #7289da;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: black;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .description { font-size: 0.9rem; }
+        }
     </style>
 </head>
 <body>
-    <h1>Bienvenue sur mon site !</h1>
-    <p>Je suis développeur Roblox et ceci est mon premier site gratuit.</p>
+
+    <!-- EN-TÊTE (HEADER) -->
+    <header>
+        <!-- Photo de profil (Avatar Roblox par défaut) -->
+        <div class="profile-img"></div>
+        
+        <h1>21xMeliodasx12</h1>
+        <p class="tagline">"Dans la vie faut sourire :)"</p>
+        
+        <div class="description">
+            <p>Salut ! Je suis développeur de jeux Roblox depuis 1 an. J'adore les animes, rigoler et jouer avec mes amis. Bienvenue dans mon univers !</p>
+        </div>
+
+        <div class="social-links">
+            <a href="https://www.youtube.com/channel/UC3MzWbZvSJc1aLWa0wT70VA" target="_blank" class="btn-social">
+                <i class="fab fa-youtube"></i> YouTube
+            </a>
+            <a href="https://www.roblox.com/fr/users/3866783099/profile" target="_blank" class="btn-social">
+                <i class="fas fa-gamepad"></i> Profil Roblox
+            </a>
+            <a href="https://www.tiktok.com/@21xmeliodasx12?lang=fr" target="_blank" class="btn-social">
+                <i class="fab fa-tiktok"></i> TikTok
+            </a>
+            <a href="https://www.roblox.com/fr/communities/32323972/LES-BEST#!/about" target="_blank" class="btn-social">
+                <i class="fas fa-users"></i> Groupe Roblox
+            </a>
+        </div>
+    </header>
+
+    <!-- SECTION JEUX -->
+    <h2 class="section-title">MES JEUX & PROJETS</h2>
+    
+    <div class="games-container">
+        
+        <!-- JEU 1 -->
+        <div class="game-card">
+            <div class="game-img img-galaxy"><i class="fas fa-rocket"></i></div>
+            <div class="game-info">
+                <h3 class="game-title">Galaxy Troll Tower</h3>
+                <p>Montez la tour la plus folle de la galaxie !</p>
+                <a href="https://www.roblox.com/fr/games/73318024522929/Galaxy-Troll-Tower-UPD-FREE-TOOL" target="_blank" class="btn-play">
+                    <i class="fas fa-play"></i> JOUER
+                </a>
+            </div>
+        </div>
+
+        <!-- JEU 2 -->
+        <div class="game-card">
+            <div class="game-img img-tycoon"><i class="fas fa-money-bill-wave"></i></div>
+            <div class="game-info">
+                <h3 class="game-title">Clicker Galaxy Tycoon</h3>
+                <p>Construis ton empire spatial clic après clic.</p>
+                <a href="https://www.roblox.com/fr/games/117801801030412/Clicker-Galaxy-tycoon" target="_blank" class="btn-play">
+                    <i class="fas fa-play"></i> JOUER
+                </a>
+            </div>
+        </div>
+
+        <!-- GROUPE -->
+        <div class="game-card">
+            <div class="game-img img-group"><i class="fas fa-crown"></i></div>
+            <div class="game-info">
+                <h3 class="game-title">Groupe: LES BEST</h3>
+                <p>Rejoins ma communauté pour des bonus exclusifs.</p>
+                <a href="https://www.roblox.com/fr/communities/32323972/LES-BEST#!/about" target="_blank" class="btn-play">
+                    REJOINDRE
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SECTION CONTACT -->
+    <div class="contact-section">
+        <h2>ME CONTACTER / FEEDBACK</h2>
+        <p>Une idée pour mes jeux ? Un bug ? Contacte-moi !</p>
+
+        <div class="contact-box">
+            <i class="fab fa-discord" style="font-size: 2rem; color: #7289da;"></i>
+            <p style="margin-top:10px; color:#aaa;">Mon pseudo Discord :</p>
+            <span class="discord-tag">21xmeliodasx12</span>
+        </div>
+
+        <!-- Ajoute ton email ici si tu en crées un plus tard -->
+        <div style="margin-top: 20px;">
+            <p>Email professionnel : <br> <a href="mailto:tonemail@gmail.com" style="color:white;">(axeliusangel@gmail.com)</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 21xMeliodasx12 - Créé 100% Gratuitement</p>
+    </footer>
+
 </body>
 </html>
