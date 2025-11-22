@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>21xMeliodasx12 | Développeur Roblox</title>
+    <title>Esteban | Développeur Roblox</title>
     
     <!-- Importation des icônes et des polices d'écriture -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -40,7 +40,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop');
+            /* Nouvelle image de fond style marbre liquide */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('https://img.freepik.com/photos-gratuite/fond-texture-peinture-marbree-liquide-texture-abstraite-peinture-fluide-fond-ecran-melange-couleurs-intensif_1258-85269.jpg?semt=ais_hybrid&w=740&q=80');
             background-size: cover;
             background-position: center;
             text-align: center;
@@ -54,14 +55,15 @@
             border: 4px solid var(--primary-red);
             box-shadow: 0 0 20px var(--primary-red);
             margin-bottom: 20px;
-            /* Image par défaut Roblox (Avatar), tu pourras la changer */
-            background-image: url('https://tr.rbxcdn.com/30DAY-AvatarHeadshot-82A19F5D3B8A42024217350985300968-Png/150/150/AvatarHeadshot/Png/noFilter'); 
+            /* Nouvelle photo de profil */
+            background-image: url('https://yt3.googleusercontent.com/KJHjdqb85T2J4AAvZt53DmNZHuGLL-lmCnwApq35yoO5U8I3jm6q0x3Fq85T4NXhz8o1OD6fxQ=s160-c-k-c0x00ffffff-no-rj'); 
             background-size: cover;
+            background-position: center;
         }
 
         h1 {
             font-size: 3.5rem;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-shadow: 2px 2px 0px var(--primary-red);
         }
 
@@ -70,6 +72,14 @@
             color: #aaa;
             margin-bottom: 20px;
             font-style: italic;
+        }
+        
+        .tagline small {
+            font-size: 0.9rem;
+            color: var(--primary-red);
+            font-weight: bold;
+            display: block; /* Pour mettre sur une nouvelle ligne */
+            margin-bottom: 5px;
         }
 
         .description {
@@ -143,22 +153,18 @@
             border-color: var(--primary-red);
         }
 
-        /* Images placeholders pour tes jeux - Tu devras mettre les vrais liens d'images si tu veux */
+        /* Style pour les images des jeux */
         .game-img {
             width: 100%;
             height: 180px;
-            background-color: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
-            font-size: 3rem;
+            overflow: hidden; /* Empêche l'image de dépasser des bords arrondis */
         }
         
-        /* Classes spécifiques pour simuler des images */
-        .img-galaxy { background: linear-gradient(45deg, #2b1055, #7597de); }
-        .img-tycoon { background: linear-gradient(45deg, #000000, #434343); }
-        .img-group { background: linear-gradient(45deg, #8b0000, #000000); }
+        .game-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* L'image couvre tout le cadre sans être déformée */
+        }
 
         .game-info {
             padding: 20px;
@@ -232,11 +238,15 @@
 
     <!-- EN-TÊTE (HEADER) -->
     <header>
-        <!-- Photo de profil (Avatar Roblox par défaut) -->
+        <!-- Photo de profil -->
         <div class="profile-img"></div>
         
-        <h1>21xMeliodasx12</h1>
-        <p class="tagline">"Dans la vie faut sourire :)"</p>
+        <!-- Nouveau Titre et Tagline -->
+        <h1>Esteban</h1>
+        <p class="tagline">
+            <small>@21XMELIODASX12</small>
+            "Dans la vie faut sourire :)"
+        </p>
         
         <div class="description">
             <p>Salut ! Je suis développeur de jeux Roblox depuis 1 an. J'adore les animes, rigoler et jouer avec mes amis. Bienvenue dans mon univers !</p>
@@ -265,7 +275,9 @@
         
         <!-- JEU 1 -->
         <div class="game-card">
-            <div class="game-img img-galaxy"><i class="fas fa-rocket"></i></div>
+            <div class="game-img">
+                <img src="https://tr.rbxcdn.com/180DAY-86aac4aaece760b54ddb9522fb1ba635/768/432/Image/Png/noFilter" alt="Galaxy Troll Tower">
+            </div>
             <div class="game-info">
                 <h3 class="game-title">Galaxy Troll Tower</h3>
                 <p>Montez la tour la plus folle de la galaxie !</p>
@@ -277,7 +289,9 @@
 
         <!-- JEU 2 -->
         <div class="game-card">
-            <div class="game-img img-tycoon"><i class="fas fa-money-bill-wave"></i></div>
+            <div class="game-img">
+                <img src="https://tr.rbxcdn.com/180DAY-5545334c9faac7a56df11aa0141b53dd/768/432/Image/Webp/noFilter" alt="Clicker Galaxy Tycoon">
+            </div>
             <div class="game-info">
                 <h3 class="game-title">Clicker Galaxy Tycoon</h3>
                 <p>Construis ton empire spatial clic après clic.</p>
@@ -289,7 +303,10 @@
 
         <!-- GROUPE -->
         <div class="game-card">
-            <div class="game-img img-group"><i class="fas fa-crown"></i></div>
+            <div class="game-img">
+                <!-- Image du groupe (redimensionnée automatiquement par le CSS) -->
+                <img src="https://tr.rbxcdn.com/180DAY-b05da9c2637ac01578d4bd65665dd233/150/150/Image/Webp/noFilter" alt="Groupe LES BEST">
+            </div>
             <div class="game-info">
                 <h3 class="game-title">Groupe: LES BEST</h3>
                 <p>Rejoins ma communauté pour des bonus exclusifs.</p>
@@ -314,12 +331,12 @@
 
         <!-- Ajoute ton email ici si tu en crées un plus tard -->
         <div style="margin-top: 20px;">
-            <p>Email professionnel : <br> <a href="mailto:tonemail@gmail.com" style="color:white;">(axeliusangel@gmail.com)</a></p>
+            <p>Email professionnel : <br> <a href="mailto:tonemail@gmail.com" style="color:white;">(Ajoute ton email ici)</a></p>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 21xMeliodasx12 - Créé 100% Gratuitement</p>
+        <p>&copy; 2025 Esteban - Créé 100% Gratuitement</p>
     </footer>
 
 </body>
