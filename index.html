@@ -18,6 +18,7 @@
             --bright-red: #ff0000;     
             --text-color: #e0e0e0;     
             --gold: #ffd700;           /* Couleur Or pour les Giveaways */
+            --announce-bg: #4a0000;    /* Rouge très foncé pour les annonces */
         }
 
         * { margin: 0; padding: 0; box-sizing: border_box; scroll-behavior: smooth; }
@@ -67,9 +68,11 @@
             padding-top: 60px;
             border-right: 3px solid var(--primary-red);
             box-shadow: 5px 0 15px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
         }
 
-        .sidebar a {
+        .sidebar a.nav-link {
             padding: 15px 8px 15px 32px;
             text-decoration: none;
             font-size: 22px;
@@ -80,7 +83,7 @@
             text-transform: uppercase;
         }
 
-        .sidebar a:hover {
+        .sidebar a.nav-link:hover {
             color: #f1f1f1;
             background: var(--primary-red);
         }
@@ -92,7 +95,80 @@
             font-size: 36px;
             margin-left: 50px;
             cursor: pointer;
+            text-decoration: none;
+            color: #818181;
         }
+
+        /* --- STYLE ESPACE ANNONCE (SIDEBAR) --- */
+        .announce-container {
+            margin: 20px;
+            padding: 15px;
+            background-color: var(--announce-bg);
+            border-radius: 10px;
+            border: 1px solid var(--bright-red);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin-top: auto; 
+            margin-bottom: 50px;
+        }
+
+        .announce-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 5px;
+        }
+
+        .mini-head {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            object-fit: cover;
+        }
+
+        .announce-title {
+            font-weight: bold;
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .announce-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .announce-actions {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .action-btn {
+            background: rgba(0,0,0,0.3);
+            border: none;
+            color: #ccc;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .action-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .action-btn.active-like { color: #4CAF50; }
+        .action-btn.active-dislike { color: #f44336; }
+
 
         /* --- HERO SECTION --- */
         header {
@@ -186,39 +262,85 @@
             text-decoration: underline;
         }
 
-        /* --- SECTION GIVEAWAY (NOUVEAU) --- */
+        /* --- SECTION GIVEAWAY (NOUVEAU DESIGN) --- */
         .giveaway-section {
             background: linear-gradient(45deg, #1a1a1a, #000);
             border-top: 2px solid var(--gold);
             border-bottom: 2px solid var(--gold);
-            padding: 40px 20px;
+            padding: 50px 20px;
             text-align: center;
             margin: 50px 0;
+            position: relative;
         }
 
         .giveaway-box {
             background: rgba(255, 215, 0, 0.05);
-            border: 1px dashed var(--gold);
+            border: 2px solid var(--gold);
             max-width: 800px;
             margin: 0 auto;
-            padding: 30px;
+            padding: 40px;
             border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+            animation: pulse-gold 3s infinite;
+        }
+
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.2); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.4); }
+            100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.2); }
         }
         
         .giveaway-title {
             color: var(--gold);
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--gold);
         }
 
-        .giveaway-status {
+        .robux-amount {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            margin: 10px 0;
+            font-family: 'Rajdhani', sans-serif;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+
+        .timer-box {
+            background: rgba(0,0,0,0.8);
+            border: 1px solid var(--primary-red);
             display: inline-block;
-            background: #333;
-            color: #aaa;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 15px;
+            padding: 15px 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .timer-text {
+            color: var(--bright-red);
+            font-size: 2rem;
+            font-family: 'monospace';
+            font-weight: bold;
+        }
+
+        .btn-participate {
+            background: var(--gold);
+            color: black;
+            font-size: 1.5rem;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-participate:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--gold);
+            background: white;
         }
 
         /* --- JEUX --- */
@@ -324,6 +446,7 @@
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
             .description { font-size: 0.9rem; }
+            .robux-amount { font-size: 2.8rem; }
         }
     </style>
 </head>
@@ -337,10 +460,30 @@
     <!-- MENU LATERAL (SIDEBAR) -->
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#home" onclick="closeNav()">🏠 Accueil</a>
-        <a href="#games" onclick="closeNav()">🎮 Mes Jeux</a>
-        <a href="#giveaway" onclick="closeNav()">🎁 Giveaways</a>
-        <a href="#contact" onclick="closeNav()">📩 Contact</a>
+        <a href="#home" class="nav-link" onclick="closeNav()">🏠 Accueil</a>
+        <a href="#games" class="nav-link" onclick="closeNav()">🎮 Mes Jeux</a>
+        <a href="#giveaway" class="nav-link" onclick="closeNav()">🎁 Giveaways</a>
+        <a href="#contact" class="nav-link" onclick="closeNav()">📩 Contact</a>
+
+        <!-- ESPACE ANNONCE -->
+        <div class="announce-container">
+            <div class="announce-header">
+                <img src="https://yt3.googleusercontent.com/KJHjdqb85T2J4AAvZt53DmNZHuGLL-lmCnwApq35yoO5U8I3jm6q0x3Fq85T4NXhz8o1OD6fxQ=s160-c-k-c0x00ffffff-no-rj" alt="Esteban" class="mini-head">
+                <span class="announce-title">ANNONCE</span>
+            </div>
+            <p class="announce-text">
+                🚨 GIVEAWAY 50K ROBUX ! <br>
+                N'oubliez pas de participer ci-dessous, il reste moins de 24h ! 🔥
+            </p>
+            <div class="announce-actions">
+                <button class="action-btn" onclick="toggleReaction(this, 'like')">
+                    <i class="fas fa-thumbs-up"></i> <span class="count">142</span>
+                </button>
+                <button class="action-btn" onclick="toggleReaction(this, 'dislike')">
+                    <i class="fas fa-thumbs-down"></i> <span class="count">3</span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- EN-TÊTE (HEADER) -->
@@ -373,15 +516,28 @@
         </div>
     </header>
 
-    <!-- SECTION GIVEAWAY (NOUVEAU) -->
+    <!-- SECTION GIVEAWAY 50K -->
     <div id="giveaway" class="giveaway-section">
-        <h2 class="giveaway-title">🎁 ESPACE GIVEAWAY & DONS</h2>
         <div class="giveaway-box">
-            <i class="fas fa-gift" style="font-size: 4rem; color: var(--gold); margin-bottom: 20px;"></i>
-            <p style="font-size: 1.2rem;">Ici il y aura tout mes giveaway, dons et événements spéciaux !</p>
-            <p style="margin-top: 10px; color: #ccc;">Reviens régulièrement pour voir si je lance un concours Robux ou items in-game.</p>
+            <h2 class="giveaway-title"><i class="fas fa-crown"></i> 50K ROBUX GIVEAWAY</h2>
             
-            <span class="giveaway-status">🔴 Aucun Giveaway en cours</span>
+            <div class="robux-amount">
+                <i class="fas fa-hexagon" style="color:var(--gold);"></i> 50,000
+            </div>
+            
+            <p style="font-size: 1.2rem; color: #ddd;">FIN DU TIRAGE DANS :</p>
+            
+            <div class="timer-box">
+                <span id="countdown" class="timer-text">Chargement...</span>
+            </div>
+
+            <p style="margin-bottom: 20px; font-style: italic; color: #aaa;">
+                <i class="fas fa-user-secret"></i> Participants masqués
+            </p>
+            
+            <button class="btn-participate" onclick="participer(this)">
+                JE PARTICIPE !
+            </button>
         </div>
     </div>
 
@@ -389,7 +545,6 @@
     <h2 id="games" class="section-title">MES JEUX & PROJETS</h2>
     
     <div class="games-container">
-        
         <!-- JEU 1 -->
         <div class="game-card">
             <div class="game-img">
@@ -431,7 +586,6 @@
                 </a>
             </div>
         </div>
-
     </div>
 
     <!-- SECTION CONTACT -->
@@ -455,18 +609,71 @@
     </footer>
 
     <script>
-        // SCRIPT POUR LE MENU
+        // SCRIPT MENU BURGER
         function openNav() {
-            // Sur mobile, on ouvre en grand, sur PC on met 250px
             if (window.innerWidth <= 600) {
                 document.getElementById("mySidebar").style.width = "100%";
             } else {
-                document.getElementById("mySidebar").style.width = "250px";
+                document.getElementById("mySidebar").style.width = "350px";
             }
         }
 
         function closeNav() {
             document.getElementById("mySidebar").style.width = "0";
+        }
+
+        // SCRIPT LIKE / DISLIKE ANNONCE
+        function toggleReaction(btn, type) {
+            let parent = btn.parentElement;
+            
+            if (btn.classList.contains(type === 'like' ? 'active-like' : 'active-dislike')) {
+                btn.classList.remove(type === 'like' ? 'active-like' : 'active-dislike');
+                let countSpan = btn.querySelector('.count');
+                countSpan.innerText = parseInt(countSpan.innerText) - 1;
+            } else {
+                btn.classList.add(type === 'like' ? 'active-like' : 'active-dislike');
+                let countSpan = btn.querySelector('.count');
+                countSpan.innerText = parseInt(countSpan.innerText) + 1;
+            }
+        }
+
+        // SCRIPT TIMER 24H
+        // On fixe une date de fin à "Maintenant + 24h"
+        // Pour que ça ne reset pas à chaque refresh pour l'utilisateur, on peut utiliser localStorage, 
+        // ou juste laisser "Maintenant + 24h" pour la démo. Ici je fais +24h fixe.
+        let countDownDate = new Date().getTime() + (24 * 60 * 60 * 1000);
+
+        let x = setInterval(function() {
+            let now = new Date().getTime();
+            let distance = countDownDate - now;
+
+            // Calculs jours, heures, minutes, secondes
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Ajout d'un 0 devant si < 10 (ex: 09s au lieu de 9s)
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            // Affichage
+            document.getElementById("countdown").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+
+            // Si fini
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "TERMINÉ";
+            }
+        }, 1000);
+
+        // FONCTION PARTICIPATION
+        function participer(btn) {
+            btn.innerHTML = "<i class='fas fa-check'></i> PARTICIPATION VALIDÉE";
+            btn.style.backgroundColor = "#4CAF50";
+            btn.style.color = "white";
+            btn.disabled = true;
+            alert("Tu es inscrit au tirage pour les 50K Robux ! Bonne chance ! 🍀");
         }
     </script>
 
