@@ -19,6 +19,8 @@
             --text-color: #e0e0e0;     
             --gold: #ffd700;           /* Couleur Or pour les Giveaways */
             --announce-bg: #4a0000;    /* Rouge très foncé pour les annonces */
+            --poll-bg: #0f1c30;        /* Bleu très foncé pour les sondages */
+            --poll-accent: #00a8ff;    /* Bleu clair pour les sondages */
         }
 
         * { margin: 0; padding: 0; box-sizing: border_box; scroll-behavior: smooth; }
@@ -73,9 +75,9 @@
         }
 
         .sidebar a.nav-link {
-            padding: 15px 8px 15px 32px;
+            padding: 10px 8px 10px 32px;
             text-decoration: none;
-            font-size: 22px;
+            font-size: 20px;
             color: #818181;
             display: block;
             transition: 0.3s;
@@ -99,16 +101,19 @@
             color: #818181;
         }
 
-        /* --- STYLE ESPACE ANNONCE (SIDEBAR) --- */
-        .announce-container {
-            margin: 20px;
+        /* --- STYLE WIDGETS (Sidebar) --- */
+        .sidebar-widget {
+            margin: 15px 20px;
             padding: 15px;
-            background-color: var(--announce-bg);
             border-radius: 10px;
-            border: 1px solid var(--bright-red);
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            margin-top: auto; 
-            margin-bottom: 50px;
+        }
+
+        /* Widget Annonce */
+        .announce-container {
+            background-color: var(--announce-bg);
+            border: 1px solid var(--bright-red);
+            margin-top: 20px; 
         }
 
         .announce-header {
@@ -128,12 +133,14 @@
             object-fit: cover;
         }
 
-        .announce-title {
+        .widget-title {
             font-weight: bold;
-            color: var(--gold);
             font-size: 1.1rem;
             font-family: 'Rajdhani', sans-serif;
         }
+
+        .title-gold { color: var(--gold); }
+        .title-blue { color: var(--poll-accent); }
 
         .announce-text {
             font-size: 0.9rem;
@@ -169,6 +176,62 @@
         .action-btn.active-like { color: #4CAF50; }
         .action-btn.active-dislike { color: #f44336; }
 
+        /* Widget Sondage (NOUVEAU) */
+        .poll-container {
+            background-color: var(--poll-bg);
+            border: 1px solid var(--poll-accent);
+            margin-bottom: 50px;
+        }
+
+        .poll-question {
+            font-size: 0.95rem;
+            color: white;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .poll-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .poll-option {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #ddd;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .poll-option:hover {
+            background: rgba(0, 168, 255, 0.2);
+            border-color: var(--poll-accent);
+        }
+
+        .poll-result-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: rgba(0, 168, 255, 0.5);
+            width: 0%;
+            z-index: 0;
+            transition: width 0.5s ease-out;
+        }
+
+        .poll-text {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+        }
 
         /* --- HERO SECTION --- */
         header {
@@ -262,7 +325,7 @@
             text-decoration: underline;
         }
 
-        /* --- SECTION GIVEAWAY (NOUVEAU DESIGN) --- */
+        /* --- SECTION GIVEAWAY --- */
         .giveaway-section {
             background: linear-gradient(45deg, #1a1a1a, #000);
             border-top: 2px solid var(--gold);
@@ -465,11 +528,11 @@
         <a href="#giveaway" class="nav-link" onclick="closeNav()">🎁 Giveaways</a>
         <a href="#contact" class="nav-link" onclick="closeNav()">📩 Contact</a>
 
-        <!-- ESPACE ANNONCE -->
-        <div class="announce-container">
+        <!-- 1. ESPACE ANNONCE -->
+        <div class="sidebar-widget announce-container">
             <div class="announce-header">
                 <img src="https://yt3.googleusercontent.com/KJHjdqb85T2J4AAvZt53DmNZHuGLL-lmCnwApq35yoO5U8I3jm6q0x3Fq85T4NXhz8o1OD6fxQ=s160-c-k-c0x00ffffff-no-rj" alt="Esteban" class="mini-head">
-                <span class="announce-title">ANNONCE</span>
+                <span class="widget-title title-gold">ANNONCE</span>
             </div>
             <p class="announce-text">
                 🚨 GIVEAWAY 50K ROBUX ! <br>
@@ -484,6 +547,47 @@
                 </button>
             </div>
         </div>
+
+        <!-- 2. ESPACE SONDAGE -->
+        <div class="sidebar-widget poll-container">
+            <div class="announce-header">
+                <i class="fas fa-poll" style="font-size: 1.5rem; color: var(--poll-accent);"></i>
+                <span class="widget-title title-blue">SONDAGE</span>
+            </div>
+            <p class="poll-question">
+                Quel type de jeu pour le prochain projet ? 🤔
+            </p>
+            
+            <div class="poll-options" id="pollOptions">
+                <!-- Option 1 -->
+                <button class="poll-option" onclick="vote(this, 75)">
+                    <div class="poll-result-bar"></div>
+                    <span class="poll-text">
+                        <span>Horror</span>
+                        <span class="poll-percent" style="display:none">75%</span>
+                    </span>
+                </button>
+
+                <!-- Option 2 -->
+                <button class="poll-option" onclick="vote(this, 15)">
+                    <div class="poll-result-bar"></div>
+                    <span class="poll-text">
+                        <span>Tycoon</span>
+                        <span class="poll-percent" style="display:none">15%</span>
+                    </span>
+                </button>
+                
+                <!-- Option 3 -->
+                <button class="poll-option" onclick="vote(this, 10)">
+                    <div class="poll-result-bar"></div>
+                    <span class="poll-text">
+                        <span>Obby</span>
+                        <span class="poll-percent" style="display:none">10%</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
     </div>
 
     <!-- EN-TÊTE (HEADER) -->
@@ -609,21 +713,23 @@
     </footer>
 
     <script>
-        // SCRIPT MENU BURGER
-        function openNav() {
+        // --- FONCTIONS GLOBALEMENT ACCESSIBLES (attachées à window) ---
+
+        // 1. MENU BURGER
+        window.openNav = function() {
             if (window.innerWidth <= 600) {
                 document.getElementById("mySidebar").style.width = "100%";
             } else {
                 document.getElementById("mySidebar").style.width = "350px";
             }
-        }
+        };
 
-        function closeNav() {
+        window.closeNav = function() {
             document.getElementById("mySidebar").style.width = "0";
-        }
+        };
 
-        // SCRIPT LIKE / DISLIKE ANNONCE
-        function toggleReaction(btn, type) {
+        // 2. LIKE / DISLIKE
+        window.toggleReaction = function(btn, type) {
             let parent = btn.parentElement;
             
             if (btn.classList.contains(type === 'like' ? 'active-like' : 'active-dislike')) {
@@ -635,46 +741,68 @@
                 let countSpan = btn.querySelector('.count');
                 countSpan.innerText = parseInt(countSpan.innerText) + 1;
             }
-        }
+        };
 
-        // SCRIPT TIMER 24H
-        // On fixe une date de fin à "Maintenant + 24h"
-        // Pour que ça ne reset pas à chaque refresh pour l'utilisateur, on peut utiliser localStorage, 
-        // ou juste laisser "Maintenant + 24h" pour la démo. Ici je fais +24h fixe.
-        let countDownDate = new Date().getTime() + (24 * 60 * 60 * 1000);
-
-        let x = setInterval(function() {
-            let now = new Date().getTime();
-            let distance = countDownDate - now;
-
-            // Calculs jours, heures, minutes, secondes
-            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Ajout d'un 0 devant si < 10 (ex: 09s au lieu de 9s)
-            hours = hours < 10 ? "0" + hours : hours;
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            // Affichage
-            document.getElementById("countdown").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
-
-            // Si fini
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "TERMINÉ";
+        // 3. SONDAGE
+        window.vote = function(btn, percent) {
+            let parent = document.getElementById("pollOptions");
+            let buttons = parent.getElementsByClassName("poll-option");
+            
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = true;
+                buttons[i].style.cursor = "default";
+                
+                let bar = buttons[i].querySelector(".poll-result-bar");
+                let txt = buttons[i].querySelector(".poll-percent");
+                
+                txt.style.display = "inline";
+                
+                let p = buttons[i].getAttribute("onclick").split(',')[1].replace(')', '').trim();
+                bar.style.width = p + "%";
             }
-        }, 1000);
+        };
 
-        // FONCTION PARTICIPATION
-        function participer(btn) {
+        // 4. PARTICIPATION
+        window.participer = function(btn) {
             btn.innerHTML = "<i class='fas fa-check'></i> PARTICIPATION VALIDÉE";
             btn.style.backgroundColor = "#4CAF50";
             btn.style.color = "white";
             btn.disabled = true;
             alert("Tu es inscrit au tirage pour les 50K Robux ! Bonne chance ! 🍀");
+        };
+
+        // 5. TIMER 24H (SÉCURISÉ)
+        // On efface l'ancien timer s'il existe déjà pour éviter l'erreur "Identifier already declared"
+        if (window.countdownInterval) {
+            clearInterval(window.countdownInterval);
         }
+
+        let countDownDate = new Date().getTime() + (24 * 60 * 60 * 1000);
+
+        // On assigne l'intervalle à window pour pouvoir le nettoyer plus tard
+        window.countdownInterval = setInterval(function() {
+            let now = new Date().getTime();
+            let distance = countDownDate - now;
+
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            let timerElement = document.getElementById("countdown");
+            if (timerElement) {
+                timerElement.innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+            }
+
+            if (distance < 0) {
+                clearInterval(window.countdownInterval);
+                if (timerElement) timerElement.innerHTML = "TERMINÉ";
+            }
+        }, 1000);
+
     </script>
 
 </body>
